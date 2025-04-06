@@ -329,7 +329,7 @@ print(name)
 | **插入元素**    | `arr.splice(index,0,...新增的元素)` | `list.insert(index, element)`            |                                          |
 | **获取数组长度**  | `arr.length`                   | `len(arr)`                               |                                          |
 | **合并数组**    | `arr.concat(arr2)`             | `arr + arr2`                             | 🔹JS和Python都返回新数组/列表                     |
-| **排序**      | `arr.sort()`                   | `arr.sort()`或<br />`sorted(arr,key=lambda,)`<br /> |  `sorted`的key参数可以为一个lambda表达式或者函数, 自定义排序的逻辑, 这个函数接收列表中的元素，并返回一个用于排序的值 |
+| **排序**      | `arr.sort()`                   | `arr.sort()`或<br />`sorted(arr,key=lambda,)`<br /> |  `sorted`的key参数可为一个lambda表达式或者函数, 自定义排序的逻辑, 这个函数接收列表中的元素，并返回一个用于排序的值 |
 | **排序(降序)**      | `arr.sort((a, b) => b - a)`                   |  `arr.sort(reverse=True)`或<br/> `sorted_words = sorted(words, key=len, reverse=True)`  | 原地排序，Python可指定key，JS默认字符串排序 |
 | **反转数组**    | `arr.reverse()`                | `arr.reverse()`<br />` arr[::-1]`        | `arr[::-1]`会返回翻转后的新数组                    |
 | **数组切片**    | `arr.slice(start, end)`        | `arr[start:end:step]`                    | `step`可以定义一个步长, 按步长截取元素                  |
