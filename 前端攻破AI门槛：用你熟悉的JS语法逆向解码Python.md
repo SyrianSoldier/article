@@ -347,7 +347,7 @@ print(name)
 | **filter数组**   | `arr.filter(callback)`  |  `[x for x in arr if condition]`<br />  |                                          |
 | **every函数**    | `arr.every(callback)`   |  `all(callback(x) for x in arr)`<br /> | `all()`函数接受一个可迭代对象作为参数，检查所有元素是否满足条件，返回布尔值。<br/>例子:`result = all(x > 0 for x in numbers)` |
 | **some函数**     | `arr.some(callback)`    |  `any(callback(x) for x in arr)`<br /> | `any()`函数接受一个可迭代对象作为参数，检查至少一个元素是否满足条件，返回布尔值。<br/>例子: `result = any(x > 10 for x in numbers)` |
-| **map数组**      | `arr.map(callback)`     |  `[callback(x) for x in arr] 或<br/> list(map(callback, arr)) | callback可用普通函数或lambda表达式;简单映射时，列表生成式更直接。<br />如:`[{"name": name} for name in ["张三","李四"]]` |
+| **map数组**      | `arr.map(callback)`     |  `[callback(x) for x in arr] 或<br/> list(map(callback, arr)) | callback可以用普通函数或lambda表达式;简单映射时，列表生成式更直接。<br />如:`[{"name": name} for name in ["张三","李四"]]` |
 | **find元素**     | `arr.find(callback)`    | `next((x for x in arr if condition), None)` | 若只是检测元素是否在数组中, 请用`element in arr`进行判断    |
 | **includes元素** | `arr.includes(element)` | `element in arr`                         |                                          |
 | **reduce**     | `arr.reduce(callback)`  | `from functools import reduce`<br />` reduce(callback, list, [initializer])` | `callback`的参数和`js`的`reduce callback`的一致  |
