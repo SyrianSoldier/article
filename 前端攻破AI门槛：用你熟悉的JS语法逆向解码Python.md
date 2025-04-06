@@ -329,8 +329,8 @@ print(name)
 | **插入元素**    | `arr.splice(index,0,...新增的元素)` | `list.insert(index, element)`            |                                          |
 | **获取数组长度**  | `arr.length`                   | `len(arr)`                               |                                          |
 | **合并数组**    | `arr.concat(arr2)`             | `arr + arr2`                             | 🔹JS和Python都返回新数组/列表                     |
-| **排序**      | `arr.sort()`                   | 升序: `arr.sort()`<br />升序:`sorted(arr,key=lambda,)`<br /> | 1. `arr.sort()` 是原地排序，`sorted` 返回新的排序列表 <br />2. `sorted`的key参数可以为一个lambda表达式或者函数, 自定义排序的逻辑, 这个函数接收列表中的元素，并返回一个用于排序的值 |
-| **排序(降序)**      | `arr.sort((a, b) => b - a)`                   |  `arr.sort(reverse=True)`<br/>降序: `sorted_words = sorted(words, key=len, reverse=True)`  | 原地排序，Python可指定key，JS默认字符串排序 |
+| **排序**      | `arr.sort()`                   | `arr.sort()`或<br />`sorted(arr,key=lambda,)`<br /> |  `sorted`的key参数可以为一个lambda表达式或者函数, 自定义排序的逻辑, 这个函数接收列表中的元素，并返回一个用于排序的值 |
+| **排序(降序)**      | `arr.sort((a, b) => b - a)`                   |  `arr.sort(reverse=True)`或<br/> `sorted_words = sorted(words, key=len, reverse=True)`  | 原地排序，Python可指定key，JS默认字符串排序 |
 | **反转数组**    | `arr.reverse()`                | `arr.reverse()`<br />` arr[::-1]`        | `arr[::-1]`会返回翻转后的新数组                    |
 | **数组切片**    | `arr.slice(start, end)`        | `arr[start:end:step]`                    | `step`可以定义一个步长, 按步长截取元素                  |
 | **数组浅拷贝**   | `arr.slice(0)`                 | `arr[:]`                                 |                                          |
@@ -345,9 +345,9 @@ print(name)
 | 操作             | JavaScript 数组方法         | Python 实现                                | 备注                                       |
 | -------------- | ----------------------- | ---------------------------------------- | ---------------------------------------- |
 | **filter数组**   | `arr.filter(callback)`  |  `[x for x in arr if condition]`<br />  |                                          |
-| **every函数**    | `arr.every(callback)`   |  `all(callback(x) for x in arr)`<br /> | `all()`函数接受一个可迭代对象作为参数，检查所有元素是否满足条件，返回布尔值。例子:`result = all(x > 0 for x in numbers)` |
-| **some函数**     | `arr.some(callback)`    |  `any(callback(x) for x in arr)`<br /> | `any()`函数接受一个可迭代对象作为参数，检查至少一个元素是否满足条件，返回布尔值。例子: `result = any(x > 10 for x in numbers)` |
-| **map数组**      | `arr.map(callback)`     |  `[callback(x) for x in arr] 或<br/> list(map(callback, arr)) | callback可用普通函数或lambda表达式。<br/>列表生成式：简单映射时，列表生成式更直接<br />如:`[{"name": name} for name in ["张三","李四"]]` |
+| **every函数**    | `arr.every(callback)`   |  `all(callback(x) for x in arr)`<br /> | `all()`函数接受一个可迭代对象作为参数，检查所有元素是否满足条件，返回布尔值。<br/>例子:`result = all(x > 0 for x in numbers)` |
+| **some函数**     | `arr.some(callback)`    |  `any(callback(x) for x in arr)`<br /> | `any()`函数接受一个可迭代对象作为参数，检查至少一个元素是否满足条件，返回布尔值。<br/>例子: `result = any(x > 10 for x in numbers)` |
+| **map数组**      | `arr.map(callback)`     |  `[callback(x) for x in arr] 或<br/> list(map(callback, arr)) | callback可用普通函数或lambda表达式;简单映射时，列表生成式更直接。<br />如:`[{"name": name} for name in ["张三","李四"]]` |
 | **find元素**     | `arr.find(callback)`    | `next((x for x in arr if condition), None)` | 若只是检测元素是否在数组中, 请用`element in arr`进行判断    |
 | **includes元素** | `arr.includes(element)` | `element in arr`                         |                                          |
 | **reduce**     | `arr.reduce(callback)`  | `from functools import reduce`<br />` reduce(callback, list, [initializer])` | `callback`的参数和`js`的`reduce callback`的一致  |
