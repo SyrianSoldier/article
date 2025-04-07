@@ -1,6 +1,6 @@
 # 用你熟悉的JS语法逆向解码Python
 
-## 常用数据类型
+## 一、常用数据类型
 
 | 数据类型     | JS 示例                    | Python 示例                             | 语法差异说明                                   |
 | -------- | ------------------------ | ------------------------------------- | ---------------------------------------- |
@@ -18,9 +18,9 @@
 
 
 
-## 分支、循环语句
+## 二、分支、循环语句
 
-### 3.1 分支语句 
+### 2.1 分支语句 
 
 ```js
 // js
@@ -45,9 +45,9 @@ else:
 
 
 
-### 3.2 循环语句
+### 2.2 循环语句
 
-#### 3.2.1 普通for循环
+#### 2.2.1 普通for循环
 
 ```js
 // js
@@ -62,7 +62,7 @@ for i in range(5):
 
 
 
-#### 3.2.2 循环数组
+#### 2.2.2 循环数组
 
 ```js
 //js
@@ -95,7 +95,7 @@ for index in range(len(my_string)):
 
 
 
-#### 3.2.3 循环对象
+#### 2.2.3 循环对象
 
 ```js
 //js
@@ -111,7 +111,7 @@ for key, value in obj.items():
 
 
 
-#### 3.3.4 while循环
+#### 2.3.4 while循环
 
 ```js
 //js
@@ -124,9 +124,9 @@ while i < 5:
 ```
 
 
-## 四、运算符
+## 三、运算符
 
-### 4.1 三目运算符
+### 3.1 三目运算符
 
 ```js
 //js
@@ -138,7 +138,7 @@ message = "条件成立时候返回的结果" if x > 0 else "条件不成立时�
 
 
 
-### 4.2 逻辑与和逻辑或
+### 3.2 逻辑与和逻辑或
 
 ```js
 // js
@@ -152,7 +152,7 @@ result = obj and obj.name
 
 
 
-### 4.3 取反操作符和双取反操作符
+### 3.3 取反操作符和双取反操作符
 
 ```js
 const condition = x > 0
@@ -167,7 +167,7 @@ bool = not condition
 
 
 
-### 4.4 自增/减运算符
+### 3.4 自增/减运算符
 
 ```js
 // js
@@ -181,7 +181,7 @@ a-=1
 
 
 
-### 4.5 === 和 ==
+### 3.5 === 和 ==
 
 ```js
 //js
@@ -199,9 +199,9 @@ if a is not b:
 
 
 
-## 语法特性
+## 四、语法特性
 
-### 真假值与隐式转换
+### 4.1 真假值与隐式转换
 
 
 | **类型/值描述**  | **JavaScript 语法示例**          | **JavaScript 判断** | **Python 语法示例**          | **Python 判断** | **关键差异说明**                       |
@@ -222,7 +222,7 @@ if a is not b:
 
 
 
-### 真假值的实际运用案例
+### 4.2 真假值的实际运用案例
 
 #### **1. 存在性检查（避免访问未定义属性）**
 
@@ -318,53 +318,42 @@ print(name)
 
 
 
-## 序列化 & 反序列化
+## 五、数组常用方法
 
-### **JSON序列化**
+#### ES5
 
-```js
-// js
-const obj = {name: "Alice", age: 30}
-str = JSON.stringfy(obj)
-```
+| 操作          | JavaScript 数组方法                | Python 实现                                | 备注                                       |
+| ----------- | ------------------------------ | ---------------------------------------- | ---------------------------------------- |
+| **添加元素**    | `arr.push(4)`                  | `arr.append(4)`                          |                                          |
+| **删除元素**    | `arr.pop()`                    | `arr.pop(index)`                         | 🔹Python的`pop`方法不传参默认删除最后一个元素, 传入索引则删除指定索引的元素 |
+| **插入元素**    | `arr.splice(index,0,...新增的元素)` | `list.insert(index, element)`            |                                          |
+| **获取数组长度**  | `arr.length`                   | `len(arr)`                               |                                          |
+| **合并数组**    | `arr.concat(arr2)`             | `arr + arr2`                             | 🔹JS和Python都返回新数组/列表                     |
+| **排序**      | `arr.sort()`                   | `arr.sort()`或<br />`sorted(arr,key=lambda,)`<br /> |  `sorted`的key参数可为一个lambda表达式或者函数, 自定义排序的逻辑, 这个函数接收列表中的元素，并返回一个用于排序的值 |
+| **排序(降序)**      | `arr.sort((a, b) => b - a)`                   |  `arr.sort(reverse=True)`或<br/> `sorted_words = sorted(words, key=len, reverse=True)`  | 原地排序，Python可指定key，JS默认字符串排序 |
+| **反转数组**    | `arr.reverse()`                | `arr.reverse()`<br />` arr[::-1]`        | `arr[::-1]`会返回翻转后的新数组                    |
+| **数组切片**    | `arr.slice(start, end)`        | `arr[start:end:step]`                    | `step`可以定义一个步长, 按步长截取元素                  |
+| **数组浅拷贝**   | `arr.slice(0)`                 | `arr[:]`                                 |                                          |
+| **查找元素的索引** | `arr.indexOf(element)`         | `arr.index(element)`                     |                                          |
+| **数组转字符串**  | `arr.join(",")`                | `",".join(arr)`                          |                                          |
+| **扁平化数组**   | `arr.flat()`                   | `arr = [elem for sublist in arr for elem in sublist]` |                                          |
 
-```python
-# python
-import json
-obj = {"name": "Alice", "age": 30}
-json_str = json.dumps(obj)
-```
+------
 
-### JSON 反序列化
+#### ES6
 
-```js
-//js
-const json_str = '{"name": "Alice", "age": 30}'
-JSON.parse(json_str)
-```
-
-```python
-# python
-json_str = '{"name": "Alice", "age": 30}'
-json.loads(json_str)
-```
-
-###  JSON 格式化（美化输出）
-
-```python
-#python
-print(json.dumps(obj, indent=4))
-# 输出:
-# {
-#     "name": "Alice",
-#     "age": 30
-# }
-
-```
+| 操作             | JavaScript 数组方法         | Python 实现                                | 备注                                       |
+| -------------- | ----------------------- | ---------------------------------------- | ---------------------------------------- |
+| **filter数组**   | `arr.filter(callback)`  |  `[x for x in arr if condition]`<br />  |                                          |
+| **every函数**    | `arr.every(callback)`   |  `all(callback(x) for x in arr)`<br /> | `all()`函数接受一个可迭代对象作为参数，检查所有元素是否满足条件，返回布尔值。<br/>例子:`result = all(x > 0 for x in numbers)` |
+| **some函数**     | `arr.some(callback)`    |  `any(callback(x) for x in arr)`<br /> | `any()`函数接受一个可迭代对象作为参数，检查至少一个元素是否满足条件，返回布尔值。<br/>例子: `result = any(x > 10 for x in numbers)` |
+| **map数组**      | `arr.map(callback)`     |  `[callback(x) for x in arr] 或<br/> list(map(callback, arr)) | callback可以用普通函数或lambda表达式;简单映射时，列表生成式更直接。<br />如:`[{"name": name} for name in ["张三","李四"]]` |
+| **find元素**     | `arr.find(callback)`    | `next((x for x in arr if condition), None)` | 若只是检测元素是否在数组中, 请用`element in arr`进行判断    |
+| **includes元素** | `arr.includes(element)` | `element in arr`                         |                                          |
+| **reduce**     | `arr.reduce(callback)`  | `from functools import reduce`<br />` reduce(callback, list, [initializer])` | `callback`的参数和`js`的`reduce callback`的一致  |
 
 
-
-## 正则
+## 六、正则
 
 > python需要提前`import re`
 
@@ -377,7 +366,7 @@ print(json.dumps(obj, indent=4))
 
 
 
-## 八、时间/日期方法
+## 七、时间/日期方法
 
 > 需要`import datetime`
 
@@ -397,52 +386,60 @@ print(json.dumps(obj, indent=4))
 
 
 
-## 数组常用方法
 
-#### ES5
+## 八、序列化 & 反序列化
 
-| 操作          | JavaScript 数组方法                | Python 实现                                | 备注                                       |
-| ----------- | ------------------------------ | ---------------------------------------- | ---------------------------------------- |
-| **添加元素**    | `arr.push(4)`                  | `arr.append(4)`                          |                                          |
-| **删除元素**    | `arr.pop()`                    | `arr.pop(index)`                         | 🔹Python的`pop`方法不传参默认删除最后一个元素, 传入索引则删除指定索引的元素 |
-| **插入元素**    | `arr.splice(index,0,...新增的元素)` | `list.insert(index, element)`            |                                          |
-| **获取数组长度**  | `arr.length`                   | `len(arr)`                               |                                          |
-| **合并数组**    | `arr.concat(arr2)`             | `arr + arr2`                             | 🔹JS和Python都返回新数组/列表                     |
-| **排序**      | `arr.sort()`                   | 升序: `arr.sort()`<br />降序: `arr.sort(reverse=True)` <br />升序:`sorted(arr,key=lambda,)`<br />降序: `sorted_words = sorted(words, key=len, reverse=True)` | 1. `arr.sort()` 是原地排序，`sorted` 返回新的排序列表 <br />2. `sorted`的key参数可以为一个lambda表达式或者函数, 自定义排序的逻辑, 这个函数接收列表中的元素，并返回一个用于排序的值 |
-| **反转数组**    | `arr.reverse()`                | `arr.reverse()`<br />` arr[::-1]`        | `arr[::-1]`会返回翻转后的新数组                    |
-| **数组切片**    | `arr.slice(start, end)`        | `arr[start:end:step]`                    | `step`可以定义一个步长, 按步长截取元素                  |
-| **数组浅拷贝**   | `arr.slice(0)`                 | `arr[:]`                                 |                                          |
-| **查找元素的索引** | `arr.indexOf(element)`         | `arr.index(element)`                     |                                          |
-| **数组转字符串**  | `arr.join(",")`                | `",".join(arr)`                          |                                          |
-| **扁平化数组**   | `arr.flat()`                   | `arr = [elem for sublist in arr for elem in sublist]` |                                          |
+### 8.1 **JSON序列化**
 
-------
+```js
+// js
+const obj = {name: "Alice", age: 30}
+str = JSON.stringfy(obj)
+```
 
-#### ES6
+```python
+# python
+import json
+obj = {"name": "Alice", "age": 30}
+json_str = json.dumps(obj)
+```
 
-| 操作             | JavaScript 数组方法         | Python 实现                                | 备注                                       |
-| -------------- | ----------------------- | ---------------------------------------- | ---------------------------------------- |
-| **filter数组**   | `arr.filter(callback)`  | 方法一: `[x for x in arr if condition]`<br /> 方法二: `list(filter(callback, arr))` |                                          |
-| **every函数**    | `arr.every(callback)`   | 方法一: `all(callback(x) for x in arr)`<br />方法二: `all(filter(callback, arr))` | `all()`函数接受一个可迭代对象作为参数，如果可迭代对象的所有元素都为真，则返回`True`，否则返回`False`。例子:`result = all(x > 0 for x in numbers)` |
-| **some函数**     | `arr.some(callback)`    | 方法一: `any(callback(x) for x in arr)`<br />方法二: `any(filter(callback, arr))` | `any()`函数接受一个可迭代对象作为参数，如果可迭代对象的任何元素为真，则返回`True`，否则返回`False`。例子: `result = any(x > 10 for x in numbers)` |
-| **map数组**      | `arr.map(callback)`     | 方法一: `[callback(x) for x in arr]`<br />方法二: `list(map(callback, arr))` | 1. `callback`可以是一个def定义的普通函数, 也可以是lambda表达式或者一个自执行的lambda表达式<br />2. 不一定要用`callback`, 简单的需求直接用列表生成式更简单<br />如:`[{"name": name} for name in ["张三","李四"]]` |
-| **find元素**     | `arr.find(callback)`    | `next((x for x in arr if condition), None)` | 若只是检测元素是否在数组中, 请用`element in arr`进行判断    |
-| **includes元素** | `arr.includes(element)` | `element in arr`                         |                                          |
-| **reduce**     | `arr.reduce(callback)`  | `from functools import reduce`<br />` reduce(callback, list, [initializer])` | `callback`的参数和`js`的`reduce callback`的一致  |
+### 8.2 JSON 反序列化
+
+```js
+//js
+const json_str = '{"name": "Alice", "age": 30}'
+JSON.parse(json_str)
+```
+
+```python
+# python
+json_str = '{"name": "Alice", "age": 30}'
+json.loads(json_str)
+```
+
+###  8.3 JSON 格式化（美化输出）
+
+```python
+#python
+print(json.dumps(obj, indent=4))
+# 输出:
+# {
+#     "name": "Alice",
+#     "age": 30
+# }
+
+```
 
 
 
+## 九、前置知识
 
-
-
-
-## 前置知识
-
-###6.1 python的列表生成式
+### 9.1 python的列表生成式
 
 > `python`的列表生成式语法可以快速生成`list`, `python`的列表生成式主要迭代`list`, **也可以迭代其他Iterable数据结构**
 
-#### 6.1.1 基本列表生成式
+#### 9.1.1 基本列表生成式
 
 ```python
 # 循环list时, 每次迭代都执行表达式, 并将表达式的返回值组成为list
@@ -454,7 +451,7 @@ sum_list =  [item * 10 for item in [1,2,3]] # [10,20,30]
 
 
 
-#### 6.1.2 带条件的列表生成式
+#### 9.1.2 带条件的列表生成式
 
 ```python
 # 循环list, 且只有满足condition才执行本次迭代, 并将表达式的返回值组成为list
@@ -466,7 +463,7 @@ sum_list =  [item * 10 for item in [1,2,3] if item > 1] # [20,30]
 
 
 
-#### 6.1.3 多重循环列表生成式
+#### 9.1.3 多重循环列表生成式
 
 ```python
 # 多重for循环生成式
@@ -476,7 +473,7 @@ sum_list =  [item * 10 for item in [1,2,3] if item > 1] # [20,30]
 pairs = [(x, y) for x in range(1, 4) for y in range(1, 4)]# [(1, 1), (1, 2), (1, 3), (2, 1), (2, 2), (2, 3), (3, 1), (3, 2), (3, 3)] 相当于双重for循环，for里嵌套for
 ```
 
-#### 6.2 python的字典生成式
+#### 9.2 python的字典生成式
 
 ```python
 {key的表达式: value的表达式 for item in iterable}
