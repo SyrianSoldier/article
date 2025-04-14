@@ -307,7 +307,7 @@ const name = data && data.user && data.user.profile  || "unknown";
 console.log(name); // 输出 "Alice"
 ```
 
-python
+~~python~~
 
 ```python
 # Python
@@ -315,7 +315,6 @@ data = {"user": {"profile": "11"}}
 name = data and data.get("user") and data.get("user").get("profile") or "unknown";
 print(name)
 ```
-
 
 
 ## 序列化 & 反序列化
