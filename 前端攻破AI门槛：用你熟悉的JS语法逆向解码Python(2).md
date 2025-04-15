@@ -1,5 +1,7 @@
 # 用你熟悉的JS语法逆向解码Python
 
+> 本文基于Python 3.13.3
+
 注:
 
 1. **重要:**先安装个**最新的(3.13.3版本)**python, 确保能跑代码, 及时跑代码验证自己写的对不对
@@ -103,7 +105,7 @@ result = fn("hello")     # 自动推断 T 为 string，返回类型也是 string
 Typescript
 
 ```typescript
-const fetchSomething = async (): Promise<any> => {
+const fetchSomething = async (): Promise<{data:any}> => {
   return axios.get('http://xxx/test')
 };
 
@@ -122,11 +124,83 @@ result = await fetchSomething();
 
 
 
+### 函数没有返回值
+
+Typescript
+
+```typescript
+const fn = ():void => {
+   console.log("test") 
+}
+```
+
+Python
+
+```python
+def fn() -> None:
+    print("test")
+```
+
+
+
+### 函数抛出异常的返回值
+
+```python
+from typing import Never  # 或 NoReturn
+
+def fn() -> Never:
+    raise Exception("抛出一个异常")
+```
+
+
+
+```typescript
+const fn = ():never => {
+  raise new Error("抛出一个异常")
+}
+```
+
+
+
 ### 类型谓词(自定义保护类型)
 
-### 提取函数的参数参数类型/返回值类型
+Typescript
 
+```typescript
+// 定义自定义类型保护
+const isString = (value: unknown): value is string => {
+    return typeof value === "string"
+}
 
+// 使用自定义类型保护
+const fun = (value: string | number): void => {
+    if(isString(value)){
+        console.log(value) // 此时value被推断为string类型
+    }else {
+        console.log(value) // 此时value被推断为number类型
+    }
+}
+```
+
+Python
+
+```python
+from typing import TypeIs, Any
+
+# 定义自定义类型保护
+def is_string(value:Any) -> TypeIs[str]:
+    return isinstance(value, str)
+
+#  使用自定义类型保护
+def fn(value: str | int) -> None:
+    if is_string(value): # 此时value被推断为string类型
+        print(value)
+    else:
+        print(value)     # 此时value被推断为number类型
+
+```
+
+###提取函数的参数参数类型/返回值类型
 
 ## 类
 
