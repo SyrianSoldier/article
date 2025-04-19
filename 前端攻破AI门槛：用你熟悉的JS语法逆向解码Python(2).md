@@ -17,17 +17,16 @@
 
 | 基本数据类型 | Typescript                      | Python                   | 含义   | 备注                                       |
 | ------ | ------------------------------- | ------------------------ | ---- | ---------------------------------------- |
-| 布尔值    |                                 |                          |      |                                          |
-| 数字     |                                 |                          |      |                                          |
-| 文本     |                                 |                          |      |                                          |
-| 数组     |                                 |                          |      |                                          |
-| 空值     |                                 |                          |      |                                          |
-| 元组     |                                 |                          |      |                                          |
-| 枚举     |                                 |                          |      |                                          |
-| any    |                                 |                          |      |                                          |
-| void   |                                 |                          |      |                                          |
-| never  |                                 |                          |      |                                          |
-| 对象     | `let obj:Record<str, any> = {}` | `obj:dict[str,Any] = {}` |      | 1. 这里写python和js语法的差异总结<br />2. 写两行, python一行,js一样<br />3. 每一行前加个符号,跟第一篇博客一样 |
+| 布尔值    |  `let flag: boolean = true`     | `flag: bool = True` | 真/假值 | 🔹 类型注解：TS用`boolean`<br/>🔹Python用`bool`,且布尔值`True/False`首字母要大写 |
+| 数字     | `let num: number = 10` | `num: int = 10` 或<br/>`num: float = 10.0` | 数值类型 | 🔹TS统一使用`number`<br/>🔹 Python区分整型和浮点型 |
+| 文本     | `let text: string = "hello"` | `text: str = "hello"` | 字符串 | 🔹TS用`string`<br/>🔹Python用`str` |
+| 数组     | `let arr: number[ ] = [1,2]` | `arr: list[int] = [1,2]` | 数组/列表 | 🔹 Python使用`list[元素类型]`  (Python3.9+) |
+| 元组     | `let t: [string, number] = ["a", 1]` | `t: tuple[str, int] = ("a", 1)` | 固定长度、固定类型的序列 | 🔹 类型和顺序必须一致 |
+| 枚举     | `enum Color { Red, Green}` | `class Color(Enum): Red = 1` | 枚举类型 | 🔹TS有原生`enum`<br/>🔹Python需要借助`Enum类`实现 |
+| 空值     | `function fn(): void {}` | `def fn() -> None: ...` | 无返回值 | 🔹TS用void表示函数无返回值<br/>🔹Python用None |
+| any    | `let a: any = '任意类型'                       | `a: Any = '任意类型'`                        | 动态类型 | 🔹 TS的`any`是内置类型<br/>🔹 Python需导入：`from typing import Any` |
+| never  | `function error(): never { throw new Error()}` | `def error() -> NoReturn: raise Exception()` | 永不返回的函数 | 🔹表示函数抛异常或死循环<br/>🔹 Python用`NoReturn，需导入from typing import NoReturn` |
+| 对象     | `let obj:Record<string, any> = {}` | `obj:dict[str,Any] = {}` | 键值对集合 | 🔹TypeScript 使用 `Record<K, V>`<br/>🔹Python 使用 `dict[键类型, 值类型] (Python3.9+)` |
 
 ## 函数类型与泛型
 
