@@ -227,9 +227,9 @@ def fn(value: str | int) -> None:
 
 ### 类型断言
 
-###类型推导
+### 类型推导
 
-###类型谓词
+### 类型谓词
 
 ### 索引类型
 
@@ -243,7 +243,151 @@ def fn(value: str | int) -> None:
 
 ## 扩展
 
-### mypy的使用
+### mypy 的使用
 
-> 放图片+文字教程
+#### 1. mypy 简介
+> mypy是一个用于Python的静态类型检查器。它可以在不运行代码的情况下检查Python代码中的类型错误。mypy可以帮助开发者在编写代码时发现潜在的错误，从而提高代码的质量和可维护性。
 
+#### 2. 安装mypy
+
+**首先，确保你有一个 Python 项目，例如 main.py** 
+
+**mypy 可以安装到以下两种环境中（任选其一）：**
+
+> 1.  全局环境（所有项目共用）
+>    * 适合频繁使用 mypy 的场景
+>    * 可能与其他项目的依赖冲突
+```bash
+pip install mypy
+```
+> 2. **虚拟环境（推荐）**
+>    * 隔离项目依赖，避免冲突
+>    * 需要每个项目单独安装
+
+```bash
+# 创建虚拟环境(Python 3.3+ 内置)
+python -m venv .venv
+
+# 激活虚拟环境
+# 1.Windows:
+.venv\Scripts\activate
+# 2.macOS/Linux:
+source .venv/bin/activate
+
+# 安装到虚拟环境
+pip install mypy
+```
+
+#### 3. 验证安装
+
+```bash
+mypy --version
+# 成功输出示例： mypy 1.15.0 (compiled: yes)
+```
+
+> 如下图所示：
+
+<img src="E:\新建文件夹\images\mypy version.png" alt="mypy version" style="zoom:75%;" />
+
+#### 4. 安装 mypy 插件
+
+**在VSCode中，可以通过以下步骤安装mypy插件：**
+
+> 1. 打开VSCode,点击左侧的扩展图标（Ctrl+Shift+X），在搜索框中输入“mypy”,然后点击安装按钮，重启VSCode生效。
+
+<img src="E:\新建文件夹\images\Mypy Type Checker.png" alt="Mypy Type Checker" style="zoom: 50%;" />
+
+#### 5. 配置 VSCode 与 mypy 集成
+
+**1. 选择解释器：**
+
+> 1. 在VSCode左下角打开设置，选择“命令面板”（Ctrl+Shift+P）
+
+<img src="E:\新建文件夹\images\Select Interpreter.png" alt="Select Interpreter" style="zoom: 50%;" />
+
+> 2. 输入并选择:
+>
+> ```plaintext
+>Python: Select Interpreter
+> ```
+> 
+> 3. 从列表选择你的虚拟环境路径：
+
+<img src="E:\新建文件夹\images\select.png" alt="select" style="zoom: 67%;" />
+
+> 4. 在根目录下创建 .vscode/settings.json 文件，添加以下配置:
+
+```json
+{
+ "python.linting.mypyEnabled": true,
+ "mypy.runUsingActiveInterpreter": true,
+ "mypy.configFile": "pyproject.toml",  // 或 mypy.ini
+ "python.defaultInterpreterPath": ".venv\\Scripts\\python.exe"  // 指向你的虚拟环境
+}
+```
+
+
+
+> 💡 如果使用 `mypy.ini` 而非 `pyproject.toml`，需修改 `configFile` 路径。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+
+#### 6. 编写Python代码并进行类型检查
+
+> 1. 在 main.py 文件中编写 Python 代码。例如：
+
+```Python
+def greet(name: str) -> str:
+    return f"Hello, {name}!"
+
+def add_numbers(a: int, b: int) -> int:
+    return a + b
+
+if __name__ == "__main__":
+    name = "Kimi"
+    print(greet(name))
+
+    # 故意引入类型错误
+    result = add_numbers(5, "3")  # 错误：第二个参数应该是int类型
+    print(result)
+```
+
+> 2. 在 VSCode 中，mypy 会自动对代码进行类型检查，并在问题面板中显示任何类型错误。
+
+也可以打开 VSCode 的终端，手动运行 mypy 命令进行类型检查：
+
+```bash
+mypy main.py
+```
+
+> 如下图所示：
+
+![](E:\新建文件夹\images\error.png)
+
+> 3. 根据mypy的输出，修改代码以解决类型错误。
+>
+> 这个输出告诉我们，在调用 add_numbers 函数时，第二个参数的类型不匹配。它应该是一个整数( int )，但我们传递了一个字符串 ( str ) 。
+
+> 修改代码：
+
+```Python
+# main.py
+
+def greet(name: str) -> str:
+    return f"Hello, {name}!"
+
+def add_numbers(a: int, b: int) -> int:
+    return a + b
+
+if __name__ == "__main__":
+    name = "Kimi"
+    print(greet(name))
+
+    # 修改后的代码，确保类型正确
+    result = add_numbers(5, 3)
+    print(result)
+```
+
+> 4. 再次运行 mypy 命令验证修正后的代码：
+
+![success](E:\新建文件夹\images\success.png)
+
+> 这表示代码中没有类型错误，mypy 已经通过了类型检查。
