@@ -21,4 +21,5 @@ git push                    # 将本地 feat/article_a的最新代码,推送到�
 此时有冲突需要在本地解决冲突
 
 6. 提交pr: 在本仓库上点击 new pull request, 将远程的feat/article 提交pr到 master分支.
-7. code review: 代码会由仓库owner审核, 提出修改意见, 在提出修改意见后需要修改代码, 重新提交pr
+7. code review: 代码会由仓库owner审核, 提出修改意见, 在提出修改意见后需要修改代码, 重新提交(只需要git push即可)
+8. review后,代码被合到master
